@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_variations",
+  "info": {
+    "singularName": "product-variation",
+    "pluralName": "product-variations",
+    "displayName": "Product Variation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "productVariationId": {
+      "type": "uid"
+    },
+    "productIds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    },
+    "variationName": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "salePrice": {
+      "type": "decimal"
+    }
+  }
+}
