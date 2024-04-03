@@ -1,5 +1,6 @@
 "use client";
-import {HttpLink, SuspenseCache, ApolloLink} from "@apollo/client";
+
+import {ApolloLink, HttpLink} from "@apollo/client";
 import {
     NextSSRApolloClient,
     ApolloNextAppProvider,
@@ -7,12 +8,12 @@ import {
     SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support/ssr";
 
-const STRAPI_URL = process.env.STRAPI_URL || "http://localhost:1337";
-
 function makeClient() {
+    const STRAPI_URL = process.env.STRAPI_URL || "http://localhost:1337/graphql";
     const httpLink = new HttpLink({
-        uri: `${STRAPI_URL}/graphql`,
+        uri: STRAPI_URL,
     });
+
     return new NextSSRApolloClient({
         cache: new NextSSRInMemoryCache(),
         link:
@@ -27,16 +28,9 @@ function makeClient() {
     });
 }
 
-function makeSuspenseCache() {
-    return new SuspenseCache();
-}
-
-export function ApolloWrapper({children}: React.PropsWithChildren) {
+export function ApolloWrapper({ children }: React.PropsWithChildren) {
     return (
-        <ApolloNextAppProvider
-            makeClient={makeClient}
-            makeSuspenseCache={makeSuspenseCache}
-        >
+        <ApolloNextAppProvider makeClient={makeClient}>
             {children}
         </ApolloNextAppProvider>
     );

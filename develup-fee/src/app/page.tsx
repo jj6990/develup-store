@@ -1,7 +1,17 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import { GetHome } from "@/queries/pagesSchemas";
 
 export default function Home() {
+  const { loading, error, data } = useQuery(GetHome, {
+    fetchPolicy: "no-cache",
+  }); //Fetching all todos
+  useEffect(() => {
+    console.log(data); //Storing all the todos
+  }, [data]);
   return (
     <main className={styles.main}>
       <div className={styles.description}>
