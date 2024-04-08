@@ -61,7 +61,6 @@ export async function registerUserAction(prevState, formData: FormData) {
         }
     }
 
-    console.log(responseData.jwt)
     cookies().set("jwt" as any, responseData.jwt, config as any);
     redirect("/dashboard");
 

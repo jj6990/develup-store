@@ -10,7 +10,7 @@ const initialState = {
 }
 export default function LoginRoute(){
     const [formState, formAction] = useFormState(loginUserAction, initialState);
-    console.log(formState);
+    // to do create errors states
     return (
         <div>
             <h1>Login</h1>

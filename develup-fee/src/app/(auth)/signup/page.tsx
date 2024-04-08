@@ -9,7 +9,7 @@ const initialState = {
 }
 export default function SignUpRoute() {
     const [formState, formAction] = useFormState(registerUserAction, initialState);
-    console.log('formState', formState)
+    console.log('formState', formState)// to do create errors states
     return (
         <div>
             <h1>Sign Up</h1>
