@@ -770,7 +770,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    userId: Attribute.UID;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -794,13 +793,13 @@ export interface ApiBillingAddressBillingAddress extends Schema.CollectionType {
     singularName: 'billing-address';
     pluralName: 'billing-addresses';
     displayName: 'Billing Address';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    billingAddressId: Attribute.UID;
-    userId: Attribute.Relation<
+    users_permissions_user: Attribute.Relation<
       'api::billing-address.billing-address',
       'oneToOne',
       'plugin::users-permissions.user'
@@ -1067,8 +1066,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    orderId: Attribute.UID;
-    userId: Attribute.Relation<
+    users_permissions_user: Attribute.Relation<
       'api::order.order',
       'oneToOne',
       'plugin::users-permissions.user'
@@ -1133,12 +1131,12 @@ export interface ApiOrderItemOrderItem extends Schema.CollectionType {
     singularName: 'order-item';
     pluralName: 'order-items';
     displayName: 'Order Item';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    orderItemId: Attribute.UID;
     order: Attribute.Relation<
       'api::order-item.order-item',
       'oneToOne',
@@ -1181,12 +1179,12 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
     singularName: 'payment-method';
     pluralName: 'payment-methods';
     displayName: 'Payment Method';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    paymentMethodId: Attribute.UID;
     paymentMethodName: Attribute.String;
     paymentMethodDescription: Attribute.Text;
     createdAt: Attribute.DateTime;
@@ -1219,7 +1217,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    productId: Attribute.UID;
     productName: Attribute.String;
     productDescription: Attribute.Text;
     price: Attribute.Decimal;
@@ -1264,7 +1261,6 @@ export interface ApiProductCategoryProductCategory
     draftAndPublish: true;
   };
   attributes: {
-    productCategoryId: Attribute.UID;
     productCategoryName: Attribute.String;
     productCategoryImage: Attribute.Media;
     parentCategory: Attribute.Relation<
@@ -1297,12 +1293,12 @@ export interface ApiProductVariationProductVariation
     singularName: 'product-variation';
     pluralName: 'product-variations';
     displayName: 'Product Variation';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    productVariationId: Attribute.UID;
     productIds: Attribute.Relation<
       'api::product-variation.product-variation',
       'oneToMany',
@@ -1342,7 +1338,6 @@ export interface ApiShippingAddressShippingAddress
     draftAndPublish: true;
   };
   attributes: {
-    addressId: Attribute.UID;
     userId: Attribute.Relation<
       'api::shipping-address.shipping-address',
       'oneToOne',
@@ -1573,12 +1568,12 @@ export interface ApiShippingMethodShippingMethod extends Schema.CollectionType {
     singularName: 'shipping-method';
     pluralName: 'shipping-methods';
     displayName: 'Shipping Method';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    shippingMethodId: Attribute.UID;
     shippingMethodName: Attribute.String;
     shippingMethodDescription: Attribute.Text;
     createdAt: Attribute.DateTime;

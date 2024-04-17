@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "productId": {
-      "type": "uid"
-    },
     "productName": {
       "type": "string"
     },

@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "addressId": {
-      "type": "uid"
-    },
     "userId": {
       "type": "relation",
       "relation": "oneToOne",

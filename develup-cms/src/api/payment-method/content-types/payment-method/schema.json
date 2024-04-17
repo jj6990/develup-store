@@ -4,16 +4,14 @@
   "info": {
     "singularName": "payment-method",
     "pluralName": "payment-methods",
-    "displayName": "Payment Method"
+    "displayName": "Payment Method",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "paymentMethodId": {
-      "type": "uid"
-    },
     "paymentMethodName": {
       "type": "string"
     },

@@ -4,17 +4,15 @@
   "info": {
     "singularName": "billing-address",
     "pluralName": "billing-addresses",
-    "displayName": "Billing Address"
+    "displayName": "Billing Address",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "billingAddressId": {
-      "type": "uid"
-    },
-    "userId": {
+    "users_permissions_user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
