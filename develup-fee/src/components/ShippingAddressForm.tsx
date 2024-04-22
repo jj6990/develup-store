@@ -19,15 +19,15 @@ export function ShippingAddressForm({data}) {
         INITIAL_STATE
     );
 
-    console.log(data);
+    console.log(data, formState);
     return (
         <form action={formAction as string}>
             <div>
                 <div>
                     {/*create a dropdown for only available countries*/}
                     <input
-                        id="contry"
-                        name="contry"
+                        id="country"
+                        name="country"
                         placeholder="Country"
                         defaultValue={data.country || ""}
                     />

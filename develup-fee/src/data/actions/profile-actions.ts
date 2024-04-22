@@ -1,7 +1,7 @@
 "use server";
 import qs from "qs";
-import { mutateData } from "@/data/services/mutate-data";
-import { flattenAttributes } from "@/lib/utils";
+import {mutateData} from "@/data/services/mutate-data";
+import {flattenAttributes} from "@/lib/utils";
 
 export async function updateProfileAction(
     userId: string,
@@ -63,12 +63,14 @@ export async function updateShippingAddressAction(
     });
 
     const payload = {
-        city: rawFormData.city,
-        country: rawFormData.country,
-        addressLine1: rawFormData.addressLine1,
-        addressLine2: rawFormData.addressLine2,
-        zipCode: rawFormData.zipCode,
-        useAddressForBilling: rawFormData.useAddressForBilling,
+        data: {
+            addressLine1: rawFormData.addressLine1,
+            addressLine2: rawFormData.addressLine2,
+            city: rawFormData.city,
+            zipCode: rawFormData.zipCode,
+            country: rawFormData.country,
+            useAddressForBilling:rawFormData.useAddressForBilling === "on",
+        }
     };
 
     const responseData = await mutateData(
