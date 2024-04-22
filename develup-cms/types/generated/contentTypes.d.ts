@@ -770,6 +770,8 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    firstName: Attribute.String;
+    lastName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1347,7 +1349,7 @@ export interface ApiShippingAddressShippingAddress
     addressLine2: Attribute.Text;
     city: Attribute.String;
     zipCode: Attribute.String;
-    countries: Attribute.Enumeration<
+    country: Attribute.Enumeration<
       [
         'Afghanistan (AF)',
         'Albania (AL)',
@@ -1542,8 +1544,9 @@ export interface ApiShippingAddressShippingAddress
         'Zambia (ZM)',
         'Zimbabwe (ZW)'
       ]
-    >;
-    useAddressForBilling: Attribute.Boolean;
+    > &
+      Attribute.DefaultTo<'Ecuador (EC)'>;
+    useAddressForBilling: Attribute.Boolean & Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

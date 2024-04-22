@@ -16,8 +16,7 @@ export async function updateProfileAction(
 
     const payload = {
         firstName: rawFormData.firstName,
-        lastName: rawFormData.lastName,
-        bio: rawFormData.bio,
+        lastName: rawFormData.lastName
     };
 
     const responseData = await mutateData(
@@ -47,6 +46,58 @@ export async function updateProfileAction(
     return {
         ...prevState,
         message: "Profile Updated",
+        data: flattenedData,
+        strapiErrors: null,
+    };
+}
+
+export async function updateShippingAddressAction(
+    userId: string,
+    prevState: any,
+    formData: FormData
+) {
+    const rawFormData = Object.fromEntries(formData);
+
+    const query = qs.stringify({
+        populate: "*",
+    });
+
+    const payload = {
+        city: rawFormData.city,
+        country: rawFormData.country,
+        addressLine1: rawFormData.addressLine1,
+        addressLine2: rawFormData.addressLine2,
+        zipCode: rawFormData.zipCode,
+        useAddressForBilling: rawFormData.useAddressForBilling,
+    };
+
+    const responseData = await mutateData(
+        "PUT",
+        `/api/shipping-addresses/${userId}?${query}`,
+        payload
+    );
+
+    if (!responseData) {
+        return {
+            ...prevState,
+            strapiErrors: null,
+            message: "Ops! Something went wrong. Please try again.",
+        };
+    }
+
+    if (responseData.error) {
+        return {
+            ...prevState,
+            strapiErrors: responseData.error,
+            message: "Failed to Register.",
+        };
+    }
+
+    const flattenedData = flattenAttributes(responseData);
+
+    return {
+        ...prevState,
+        message: "Profile Shipping Address Updated",
         data: flattenedData,
         strapiErrors: null,
     };

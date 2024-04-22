@@ -1,18 +1,22 @@
 import { getUserMeLoader } from "@/data/services/get-user-me-loader";
-// import { ProfileForm } from "@/components/forms/ProfileForm";
+import {getUserMeAdresses} from "@/data/services/get-user-me-addresses";
+import {ProfileForm} from "@/components/ProfileForm";
+import {ShippingAddressForm} from "@/components/ShippingAddressForm";
 // import { ProfileImageForm } from "@/components/forms/ProfileImageForm";
 
 export default async function AccountRoute() {
     const user = await getUserMeLoader();
+    const userAddress = await getUserMeAdresses();
     const userData = user.data;
-    // const userImage = userData?.image;
+    const userAddressData = userAddress.data.data[0];
 
+    console.log(userAddressData);
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 p-4">
+        <div>
             Account Page
             create a form to update user data
-            {/* <ProfileForm data={userData} className="col-span-3" /> */}
-            {/* <ProfileImageForm data={userImage} className="col-span-2" /> */}
+            <ProfileForm data={userData} />
+            <ShippingAddressForm data={userAddressData} />
         </div>
     );
 }
