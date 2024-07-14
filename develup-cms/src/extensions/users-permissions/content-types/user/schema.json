@@ -70,6 +70,18 @@
     },
     "lastName": {
       "type": "string"
+    },
+    "shipping_address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::shipping-address.shipping-address",
+      "mappedBy": "user_id"
+    },
+    "billing_address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::billing-address.billing-address",
+      "inversedBy": "users_permissions_user"
     }
   }
 }

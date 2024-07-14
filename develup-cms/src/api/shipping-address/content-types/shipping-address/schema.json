@@ -12,10 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "userId": {
+    "user_id": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "shipping_address"
     },
     "addressLine1": {
       "type": "text"
@@ -35,6 +36,12 @@
     },
     "country": {
       "type": "string"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order",
+      "mappedBy": "shipping_address"
     }
   }
 }

@@ -38,25 +38,34 @@
         "partially shipped"
       ]
     },
-    "billingAddress": {
+    "billing_address": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::billing-address.billing-address"
+      "target": "api::billing-address.billing-address",
+      "inversedBy": "order"
     },
-    "shippingAddress": {
+    "shipping_address": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::shipping-address.shipping-address"
+      "target": "api::shipping-address.shipping-address",
+      "inversedBy": "order"
     },
     "shipping_method": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::shipping-method.shipping-method"
+      "target": "api::shipping-method.shipping-method",
+      "inversedBy": "order"
     },
     "payment_method": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::payment-method.payment-method"
+      "target": "api::payment-method.payment-method",
+      "inversedBy": "order"
+    },
+    "order_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order-item.order-item"
     }
   }
 }

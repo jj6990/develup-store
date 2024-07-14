@@ -15,7 +15,8 @@
     "users_permissions_user": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "billing_address"
     },
     "addressLine1": {
       "type": "text"
@@ -225,6 +226,12 @@
         "Zambia (ZM)",
         "Zimbabwe (ZW)"
       ]
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order",
+      "mappedBy": "billing_address"
     }
   }
 }

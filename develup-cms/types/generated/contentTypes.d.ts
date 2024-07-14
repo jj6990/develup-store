@@ -772,6 +772,16 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     firstName: Attribute.String;
     lastName: Attribute.String;
+    shipping_address: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::shipping-address.shipping-address'
+    >;
+    billing_address: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::billing-address.billing-address'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1006,6 +1016,11 @@ export interface ApiBillingAddressBillingAddress extends Schema.CollectionType {
         'Zimbabwe (ZW)'
       ]
     >;
+    order: Attribute.Relation<
+      'api::billing-address.billing-address',
+      'oneToOne',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1089,12 +1104,12 @@ export interface ApiOrderOrder extends Schema.CollectionType {
         'partially shipped'
       ]
     >;
-    billingAddress: Attribute.Relation<
+    billing_address: Attribute.Relation<
       'api::order.order',
       'oneToOne',
       'api::billing-address.billing-address'
     >;
-    shippingAddress: Attribute.Relation<
+    shipping_address: Attribute.Relation<
       'api::order.order',
       'oneToOne',
       'api::shipping-address.shipping-address'
@@ -1108,6 +1123,11 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'api::order.order',
       'oneToOne',
       'api::payment-method.payment-method'
+    >;
+    order_items: Attribute.Relation<
+      'api::order.order',
+      'oneToMany',
+      'api::order-item.order-item'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1189,6 +1209,11 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
   attributes: {
     paymentMethodName: Attribute.String;
     paymentMethodDescription: Attribute.Text;
+    order: Attribute.Relation<
+      'api::payment-method.payment-method',
+      'oneToOne',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1340,7 +1365,7 @@ export interface ApiShippingAddressShippingAddress
     draftAndPublish: true;
   };
   attributes: {
-    userId: Attribute.Relation<
+    user_id: Attribute.Relation<
       'api::shipping-address.shipping-address',
       'oneToOne',
       'plugin::users-permissions.user'
@@ -1351,6 +1376,11 @@ export interface ApiShippingAddressShippingAddress
     zipCode: Attribute.String;
     useAddressForBilling: Attribute.Boolean & Attribute.DefaultTo<true>;
     country: Attribute.String;
+    order: Attribute.Relation<
+      'api::shipping-address.shipping-address',
+      'oneToOne',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1383,6 +1413,11 @@ export interface ApiShippingMethodShippingMethod extends Schema.CollectionType {
   attributes: {
     shippingMethodName: Attribute.String;
     shippingMethodDescription: Attribute.Text;
+    order: Attribute.Relation<
+      'api::shipping-method.shipping-method',
+      'oneToOne',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
