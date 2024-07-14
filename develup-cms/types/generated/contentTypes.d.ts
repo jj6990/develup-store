@@ -782,6 +782,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'api::billing-address.billing-address'
     >;
+    orders: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::order.order'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1085,7 +1090,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
   attributes: {
     users_permissions_user: Attribute.Relation<
       'api::order.order',
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     orderDate: Attribute.DateTime;
